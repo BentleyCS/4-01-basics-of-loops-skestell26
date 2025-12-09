@@ -1,48 +1,57 @@
 #All questions must use a loop for full points.
 
 def oddNumbers(n:int) ->str:
-    """
-    Print out all odd numbers from 1 to n(inclusive) in a single string seperated by spaces.
-    example oddNumbers(5) -> "1 3 5"
-    example oddNumbers(8) -> "1 3 5 7"
-    example oddNumbers(-8) -> ""
-    """
+   result = ""
+   for i in range (1,n+1):
+       if i % 2 == 1:
+           result +=str(i) + " "
+   return result.strip()
+
 
 
 def backwards(n)-> int:
-    """
-    modify the below function such that it prints out all the numbers from n to 1
-    inclusive starting at n and counting down to 1
-    example backwards(5) -> "5 4 3 2 1"
-    example backwards(8) -> "8 7 6 5 4 3 2 1"
-    example backwards(-2) -> ""
-    """
+    if n < 1:
+        return ""
+    result = ""
+    for i in range(n,0,-1):
+        result += str(i) + " "
+    return result.strip()
+
 
 
 
 def randomRepeating():
-    """
-    Print out a random number from 1-10 until you get a 10. Then print out how many
-    times it took to roll a 10
-    NOTE: Given randomness no test for this question
-    :return:
-    """
     tries = 0
+    num = 0
+    while num != 10:
+        num = random.randint(1,100)
+        tries += 1
     print(f"it took {tries} tries to get a 10")
+
+import random
+
 def randomRange(n):
-    """
-    Generate a random number from 1 to 100 n number of times. Then after that is
-    done print out what the highest number and the lowers number was from the rolled numbers.
-    NOTE: Given randomness no test for this question
-    :param n:
-    :return:
-    """
+    highest = 0
+    lowest = 101
+    for i in range(n):
+       num = random.randint(1,100)
+
+       if num > highest:
+           highest = num
+       if num < lowest:
+            lowest = num
+    print("highest:", highest)
+    print("lowest:", lowest)
+
 def reverse(word:str)->str:
-    """
-    Takes in a string as an argument and return the given string in reverse.
-    example reverse("cat") -> "tac"
-    example reverse("Hello") -> "olleH"
-    """
+    result = ""
+    index = len(word) -1
+
+    while index >= 0:
+       result += word[index]
+       index -= 1
+
+    return result
 
 def fizzBuzzContinuous(n):
     """
@@ -58,7 +67,19 @@ def fizzBuzzContinuous(n):
     :param n:
     :return:
     """
-
+    out = ""
+    for i in range(1,n+1):
+        if i % 3 == 0 and i % 5 == 0:
+            out = out +"fizzbuzz "
+        elif i % 3 ==0:
+            out = out +"fizz "
+        elif i % 5 ==0:
+            out = out +"buzz "
+        else:
+            out = out + str(i) + " "
+    return out[0:len(out)-1]
+    return out[:-1]
+fizzBuzzContinuous(15)
 def collatz(n):
     """
     Modify this function such that it mimics the collatz conjecture starting at n
@@ -69,8 +90,16 @@ def collatz(n):
     :param n:
     :return:
     """
+    out = ""
+    while n!= 1:
+        out += str(n)+ " "
+        if n % 2 ==0:
+            n = n//2
+        elif n % 1 ==0:
+            n = n * 3 +1
+    return out +"1"
 
-
+print(collatz(16))
 def fibonacci(n):
     """
     for the given argument n print out the first n numbers of the fibonacci
@@ -83,6 +112,20 @@ def fibonacci(n):
     :param n:
     :return:
     """
-
+    if n <= 0:
+        return ""
+    if n == 1:
+        return "0"
+    result = "0 1"
+    a = 0
+    b = 1
+    count = 2
+    while count < n:
+        c = a + b
+        result += " " + str(c)
+        a = b
+        b = c
+        count += 1
+    return result
 
 print(fibonacci(300))
